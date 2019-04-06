@@ -1,0 +1,6 @@
+books/
+output/*.epub
+*.bat
+
+!books/stylesheet.css
+!books/titlepage.html
