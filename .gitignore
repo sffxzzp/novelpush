@@ -1,4 +1,4 @@
-books/
+books/**
 output/*.epub
 *.bat
 
