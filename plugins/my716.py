@@ -71,11 +71,11 @@ class my716:
 		print('\t%s' % cinfo['title'])
 		ccont = json.loads(weblib().get(cinfo['url']), True)
 		if ccont['ok'] == True:
-			cinfo['content'] = '　　%s' % ccont['chapter']['body'].replace('\n', '<br />　　')
+			content = '　　%s' % ccont['chapter']['body'].replace('\n', '<br />　　')
 		else:
-			cinfo['content'] = ''
+			content = ''
 		fn = '%d.html' % (i+1)
-		filelib().write('%s/%s' % (self.path, fn), self.filecont % {'title': cinfo['title'], 'content': cinfo['content']}, encoding='utf-8')
+		filelib().write('%s/%s' % (self.path, fn), self.filecont % {'title': cinfo['title'], 'content': content}, encoding='utf-8')
 
 def getClass(pluginmanager):
 	return my716(pluginmanager)

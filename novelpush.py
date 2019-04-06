@@ -87,6 +87,9 @@ class NovelPush:
 		print(lang['downloading'])
 		self.path = plugin.download(self.count)
 		print(lang['downloadComplete'])
+		# Download complete, and recheck downloaded file num
+		# This could fix the newest downloaded files not added to toc and opf file.
+		self.count = plugin.checkStart()
 	def makeBook(self):
 		print(lang['makeEpub'])
 		# copy needed files to target folder.
