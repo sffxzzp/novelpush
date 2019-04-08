@@ -1,6 +1,7 @@
 books/**
 output/*.epub
 *.bat
+settings.json
 
 !books/stylesheet.css
 !books/titlepage.html
