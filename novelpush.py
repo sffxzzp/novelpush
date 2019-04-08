@@ -145,7 +145,6 @@ class NovelPush:
 		# search books
 		if self.lastSearch == '':
 			self.lastSearch = input(lang['searchKeyword'])
-		print(self.lastSearch)
 		sresult = plugin.search(self.lastSearch)
 		print(lang['searchResultBelow'])
 		for i in range(0, len(sresult)):
