@@ -47,7 +47,9 @@ class epublib:
 		filelib().write('%s/toc.ncx' % self.bookid, self.ncxcont % {'bookid': self.bookid, 'title': self.booktitle, 'author': self.bookauthor, 'navpoints': '\n'.join(self.navpoints)}, encoding='utf-8')
 	def makeZip(self):
 		with ZipFile('%s/%s.epub' % ('output', self.booktitle), 'w', ZIP_DEFLATED, 9) as epubfile:
+			rawPath = os.getcwd()
 			os.chdir(self.bookid)
 			for root, dirs, files in os.walk('.'):
 				for f in files:
 					epubfile.write(os.path.join(root, f))
+			os.chdir(rawPath)
