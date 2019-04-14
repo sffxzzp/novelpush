@@ -18,7 +18,7 @@ class my716:
 		self.infourl = 'https://api.zhuishushenqi.com/book/%s'
 		self.cataurl = 'https://api.zhuishushenqi.com/atoc/%s?view=chapters'
 		self.chapterurl = 'https://chapterup.zhuishushenqi.com/chapter/%s'
-		self.filecont = '<?xml version="1.0" encoding="utf-8"?>\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n<title>%(title)s</title>\n<link href=\"stylesheet.css\" rel=\"stylesheet\" type=\"text/css\"/>\n</head>\n<body>\n<h2 class=\"center\">%(title)s</h2><hr>\n<div id=\"content\">%(content)s</div>\n</body>\n</html>'
+		self.filecont = '<?xml version="1.0" encoding="utf-8"?>\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n<title>%(title)s</title>\n<link href=\"stylesheet.css\" rel=\"stylesheet\" type=\"text/css\"/>\n</head>\n<body>\n<h2 class=\"center\">%(title)s</h2><hr>\n<div id=\"content\"><p>%(content)s</p></div>\n</body>\n</html>'
 	def search(self, keyword):
 		scont = json.loads(weblib().get(self.searchurl % quote(keyword)), True)
 		self.sresult = []
