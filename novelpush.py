@@ -31,7 +31,7 @@ lang = {
 	'SMTPPassword': 'SMTP 密码：',
 	'SMTPFrom': '发件箱：',
 	'SMTPTo': '收件箱：',
-	'sendEmail': '\n正在发送书籍至：%s',
+	'sendEmail': '\n即将发送书籍至：%s\n请按回车键开始下载…',
 	'emailSent': '邮件已发送！'
 }
 
@@ -202,7 +202,7 @@ class NovelPush:
 		else:
 			print(lang['epubAlreadyExists'])
 	def sendMail(self):
-		print(lang['sendEmail'] % self.smtp['ToEmail'])
+		input(lang['sendEmail'] % self.smtp['ToEmail'])
 		email = maillib()
 		email.init(self.smtp)
 		email.subject(self.binfo['title'])
