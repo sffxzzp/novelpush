@@ -31,7 +31,7 @@ lang = {
 	'SMTPPassword': 'SMTP 密码：',
 	'SMTPFrom': '发件箱：',
 	'SMTPTo': '收件箱：',
-	'sendEmail': '\n即将发送书籍至：%s\n请按回车键开始下载…',
+	'sendEmail': '\n即将发送书籍至：%s\n请按回车键开始发送…',
 	'emailSent': '邮件已发送！'
 }
 
