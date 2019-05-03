@@ -1,6 +1,7 @@
 books/**
 output/*.epub
 *.bat
+novels.txt
 settings.json
 
 !books/stylesheet.css

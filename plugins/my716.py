@@ -31,7 +31,7 @@ class my716:
 	def getsid(self, bid):
 		sources = json.loads(weblib().get(self.sourceurl % bid), True)
 		for source in sources:
-			if source['source'] == 'my176':
+			if source['source'] == 'xbiquge':
 				return source['_id']
 	def getInfo(self, selection):
 		self.selection = selection
