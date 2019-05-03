@@ -171,11 +171,11 @@ class NovelPush:
 		self.count = plugin.checkStart()
 		self.chapters = plugin.getCata()
 		input(lang['waitDownload'] % (self.count, len(self.chapters)))
-		self.clearConfig()
 		# Then download the book into seperate html file.
 		# and create a cata html file.
 		print(lang['downloading'])
 		self.path = plugin.download(self.count)
+		self.clearConfig()
 		print(lang['downloadComplete'])
 		# Download complete, and recheck downloaded file num
 		# This could fix the newest downloaded files not added to toc and opf file.

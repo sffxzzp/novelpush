@@ -68,7 +68,7 @@ class my716:
 		return self.path
 	def downChap(self, i):
 		cinfo = self.chapters[i]
-		print('\t%s' % cinfo['title'])
+		print('\t%s' % cinfo['title'].encode('gbk', 'ignore').decode('gbk'))
 		ccont = json.loads(weblib().get(cinfo['url']), True)
 		if ccont['ok'] == True:
 			content = '　　%s' % ccont['chapter']['body'].replace('\n', '<br />　　')

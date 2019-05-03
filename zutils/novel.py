@@ -112,7 +112,7 @@ class booklib:
 		return self.path
 	def downChap(self, i):
 		cinfo = self.chapters[i]
-		print('\t%s' % cinfo['title'])
+		print('\t%s' % cinfo['title'].encode('gbk', 'ignore').decode('gbk'))
 		ccont = weblib().get(cinfo['url'], chardet=True)
 		content = findstr(self.chaprule, ccont)[0]
 		for item in self.chapclean:
