@@ -25,7 +25,7 @@ class my716:
 		if scont['ok']:
 			bcount = 10 if scont['total'] > 10 else scont['total']
 			scont = scont['books']
-			for i in range(0, bcount):
+			for i in range(0, len(scont)):
 				self.sresult.append({'id': scont[i]['_id'], 'title': scont[i]['title'], 'url': scont[i]['_id'], 'author': scont[i]['author']})
 			return self.sresult
 	def getsid(self, bid):
