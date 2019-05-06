@@ -154,7 +154,6 @@ class NovelPush:
 			self.lastSelect = int(input(lang['selectBook']))
 		self.binfo = plugin.getInfo(self.lastSelect-1)
 		print("%s\n\t%s\t%s\n\t%s\t%s\n\t%s\t%s\n\t%s%s\n\t%s%s" % (lang['bookInfo'], lang['bookName'], self.binfo['title'], lang['bookAuthor'], self.binfo['author'], lang['bookIntro'], self.binfo['des'], lang['lastUpdated'], self.binfo['time'], lang['lastChapter'], self.binfo['last']))
-		self.saveConfig()
 		# check difference under `books` folder
 		# books folder should structured like below
 		# books
@@ -171,6 +170,7 @@ class NovelPush:
 		self.count = plugin.checkStart()
 		self.chapters = plugin.getCata()
 		input(lang['waitDownload'] % (self.count, len(self.chapters)))
+		self.saveConfig()
 		# Then download the book into seperate html file.
 		# and create a cata html file.
 		print(lang['downloading'])
