@@ -23,9 +23,9 @@ class my716:
 		scont = json.loads(weblib().get(self.searchurl % quote(keyword)), True)
 		self.sresult = []
 		if scont['ok']:
-			bcount = 10 if scont['total'] > 10 else scont['total']
 			scont = scont['books']
-			for i in range(0, len(scont)):
+			bcount = 10 if len(scont) > 10 else len(scont)
+			for i in range(0, bcount):
 				self.sresult.append({'id': scont[i]['_id'], 'title': scont[i]['title'], 'url': scont[i]['_id'], 'author': scont[i]['author']})
 			return self.sresult
 	def getsid(self, bid):
