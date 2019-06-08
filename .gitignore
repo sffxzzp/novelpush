@@ -1,6 +1,7 @@
 books/**
 output/*.epub
 *.bat
+*.exe
 novels.txt
 settings.json
 
