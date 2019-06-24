@@ -32,7 +32,8 @@ lang = {
 	'SMTPFrom': '发件箱：',
 	'SMTPTo': '收件箱：',
 	'sendEmail': '\n即将发送书籍至：%s\n请按回车键开始发送…',
-	'emailSent': '邮件已发送！'
+	'emailSent': '邮件已发送！',
+	'ifTransformEpub': '是否转换 Epub 为 Mobi 文件 (Y/n) ：'
 }
 
 class PluginManager:
@@ -69,6 +70,7 @@ class NovelPush:
 		self.lastSearch = ''
 		self.lastSelect = 0
 		self.smtp = {}
+		self.mobi = False
 	def getConfig(self):
 		cfgfile = filelib().json(self.settings)
 		if not cfgfile:
@@ -201,13 +203,24 @@ class NovelPush:
 			print(lang['makeEpubComplete'])
 		else:
 			print(lang['epubAlreadyExists'])
+	def epub2mobi(self):
+		# ask if transform epub to mobi
+		select = input(lang['ifTransformEpub'])
+		if select == 'Y' or select == 'y' or select == '':
+			os.system('zutils/kindlegen.exe %s' % self.epubpath)
+			self.mobi = True
+		else:
+			pass
 	def sendMail(self):
 		input(lang['sendEmail'] % self.smtp['ToEmail'])
 		email = maillib()
 		email.init(self.smtp)
 		email.subject(self.binfo['title'])
 		email.main('书名：%s\n作者：%s' % (self.binfo['title'], self.binfo['author']))
-		email.attach('%s.epub' % self.binfo['title'], self.epubpath)
+		if self.mobi:
+			email.attach('%s.mobi' % self.binfo['title'], self.epubpath)
+		else:
+			email.attach('%s.epub' % self.binfo['title'], self.epubpath)
 		email.send()
 		print(lang['emailSent'])
 
@@ -215,4 +228,5 @@ if __name__ == '__main__':
 	novel = NovelPush()
 	novel.getBook()
 	novel.makeBook()
+	novel.epub2mobi()
 	novel.sendMail()

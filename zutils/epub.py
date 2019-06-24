@@ -30,7 +30,8 @@ class epublib:
 		self.metadata = '\n'.join([
 			self.opfdc % {'name': 'title', 'value': self.booktitle},
 			self.opfdc % {'name': 'creator', 'value': self.bookauthor},
-			self.opfdc % {'name': 'description', 'value': self.bookdes}
+			self.opfdc % {'name': 'description', 'value': self.bookdes},
+			self.opfdc % {'name': 'language', 'value': 'zh'}
 		])
 	def addChap(self, cid, ctitle):
 		self.chapters.append({'id': cid, 'title': ctitle})
