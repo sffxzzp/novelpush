@@ -1,0 +1,60 @@
+{
+    /*
+        这里填写针对每个网站的具体配置信息。
+        json支持单行与多行注释。
+        非标准带注释json，仅支持英文引号的转义
+        另外文件采用UTF-8编码保存，以防正则中含有中文而产生错误。
+    */
+    "enabled": true,    //是否启用
+    "debug": true,  //是否调试
+    "url": "https://www.xbiqugela.com/",  //配置所支持网站的URL。
+    "idrule": "/book_(\d*)/",  //从网站URL中提取书籍ID的正则表达式。
+    /*
+        以下正则或字串作用于搜索页面。
+    */
+    "searchurl": "https://www.xbiqugela.com/search?keyword=%s",  //搜索页面的URL，其中 %s 为占位符。
+    "sidrule": "<a href=\"/book_(\d*)/\"",    //获取书籍ID
+    "stitlerule": "<a href=\"/book_\d*/\" target=\"_blank\">[\s\S] *(.*?)[\s\S].*</a>",   //标题匹配规则。
+    "surlrule": "<a href=\"(/book_\d*/)\"", //URL匹配规则。
+    "sauthorrule": "<a href=\"/author/\d*/\">[\s\S] *(.*?)[\s\S].*</a>",  //作者匹配规则
+    /*
+        以下正则或字串作用于搜索结果页面，都可以为空
+    */
+    "coverrule": "<meta property=\"og:image\" content=\"(.*?)\" ?/>", //获取书籍封面
+    "timerule": "<meta property=\"og:novel:update_time\" content=\"(.*?)\" ?/>",  //获取最后更新时间
+    "lastrule": "<meta property=\"og:novel:latest_chapter_name\" content=\"(.*?)\" ?/>",  //获取最新更新章节名
+    "desrule": "<div id=\"intro\">[\s\S]\s*([\s\S]+?)<br />",   //提取描述的正则。
+    /*
+        以下正则或字串作用于目录页
+    */
+    "listleft": "正文",    //用于分割目录列表的左侧字串。可为空。
+    "listright": "<div id=\"footer\" class=\"footer\">", //用于分割目录列表的右侧字串。可为空。
+    "listrule": "<dd>[\s\S].*?<a href=\"(/book_\d*/\d*.html)\">[\s\S] +(.*?)[\s\S].*?</a>[\s\S].*?</dd>", //用于从目录中提取内容的正则。
+    /*
+        以下作用于具体章节页。
+    */
+    "chaprule": "<div id=\"content\".*?>([\s\S]*?)<div class=\"bottem2\">",    //从章节页中提取正文内容的正则。
+    "chapclean": [
+        "<p class=\"content_detail\">",
+        "</p>",
+        "</div>",
+        "&nbsp;",
+        "\t",
+        "    "
+    ],  //提取后需要去除的字符串。
+    "chapcleanre": [
+        "<script>.+?</script>",
+        "一秒.*?com",
+        "首发.*?com",
+        "\n"
+    ],  //提取后需要去除的字串。（通过正则匹配）
+    /*
+        下面是输出到文件的范例模板。直接输出txt写{content}即可。
+        换行符使用\n。使用预留的占位符，并在保存至本地时对占位符进行替换。
+        {title}     对应书名
+        {author}    对应作者
+        {url}       对应目录页URL
+        {content}   对应章节正文内容
+    */
+    "output": "<?xml version='1.0' encoding='utf-8'?>\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n<title>{title}</title>\n<link href=\"stylesheet.css\" rel=\"stylesheet\" type=\"text/css\"/>\n</head>\n<body>\n<h2 class=\"center\">{title}</h2>\n<div id=\"content\"><p>{content}</p></div>\n</body>\n</html>"
+}

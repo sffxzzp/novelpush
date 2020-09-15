@@ -11,22 +11,28 @@ class weblib:
 		self.jar.set(key, value)
 	def getCookie(self):
 		return requests.utils.dict_from_cookiejar(self.cookies)
-	def get(self, url, chardet=False):
+	def get(self, url, chardet=False, debug=False):
 		try:
 			req = requests.get(url, headers = self.headers, cookies = self.jar, timeout=90)
 			self.cookies = req.cookies
 			if chardet:
 				req.encoding = requests.utils.get_encodings_from_content(req.text)[0]
-			return req.text
+			if debug:
+				return req
+			else:
+				return req.text
 		except:
 			return ''
-	def post(self, url, postdata, chardet=False):
+	def post(self, url, postdata, chardet=False, debug=False):
 		try:
 			req = requests.post(url, headers = self.headers, cookies = self.jar, data = postdata, timeout=90)
 			self.cookies = req.cookies
 			if chardet:
 				req.encoding = requests.utils.get_encodings_from_content(req.text)[0]
-			return req.text
+			if debug:
+				return req
+			else:
+				return req.text
 		except:
 			return ''
 	def download(self, url, filename):

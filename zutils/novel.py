@@ -62,22 +62,22 @@ class booklib:
 		icont = weblib().get(book['url'], chardet=True)
 		if not self.coverrule == '':
 			try:
-				book['cover'] = findstr(self.coverrule, icont)[0]
+				book['cover'] = findstr(self.coverrule, icont)[0].encode('gbk', 'ignore').decode('gbk')
 			except:
 				book['cover'] = ''
 		if not self.timerule == '':
 			try:
-				book['time'] = findstr(self.timerule, icont)[0]
+				book['time'] = findstr(self.timerule, icont)[0].encode('gbk', 'ignore').decode('gbk')
 			except:
 				book['time'] = ''
 		if not self.lastrule == '':
 			try:
-				book['last'] = findstr(self.lastrule, icont)[0]
+				book['last'] = findstr(self.lastrule, icont)[0].encode('gbk', 'ignore').decode('gbk')
 			except:
 				book['last'] = ''
 		if not self.desrule == '':
 			try:
-				book['des'] = findstr(self.desrule, icont)[0]
+				book['des'] = findstr(self.desrule, icont)[0].encode('gbk', 'ignore').decode('gbk')
 			except:
 				book['des'] = ''
 		return book
@@ -95,7 +95,8 @@ class booklib:
 	def getCata(self):
 		book = self.sresult[self.selection]
 		cinfo = weblib().get(book['url'], chardet=True)
-		cinfo = cinfo.split(self.listleft)[1].split(self.listright)[0]
+		cinfo = self.listleft.join(cinfo.split(self.listleft)[1:])
+		cinfo = self.listright.join(cinfo.split(self.listright)[:-1])
 		chaps = findstr(self.listrule, cinfo)
 		for chap in chaps:
 			if not 'http' in chap[0]:
@@ -108,6 +109,8 @@ class booklib:
 		for i in range(start, len(self.chapters)):
 			self.downChap(i)
 		if not self.hasCover:
+			if 'http' not in self.sresult[self.selection]['cover']:
+				self.sresult[self.selection]['cover'] = self.url + self.sresult[self.selection]['cover']
 			weblib().download(self.sresult[self.selection]['cover'], '%s/cover.jpg' % self.path)
 		return self.path
 	def downChap(self, i):

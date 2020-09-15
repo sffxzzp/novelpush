@@ -7,12 +7,12 @@
     */
     "enabled": true,    //是否启用
     "debug": true,  //是否调试
-    "url": "https://www.xbiquge6.com/",  //配置所支持网站的URL。
+    "url": "https://www.xsbiquge.com/",  //配置所支持网站的URL。
     "idrule": "/(\d*_\d*)/?",  //从网站URL中提取书籍ID的正则表达式。
     /*
         以下正则或字串作用于搜索页面。
     */
-    "searchurl": "https://www.xbiquge6.com/search.php?keyword=%s",  //搜索页面的URL，其中 %s 为占位符。
+    "searchurl": "https://www.xsbiquge.com/search.php?keyword=%s",  //搜索页面的URL，其中 %s 为占位符。
     "sidrule": "<a.*?href=\".*?/(\d*_\d*)/?.*?\".*?class=\"result-game-item-title-link\".*?>",    //获取书籍ID
     "stitlerule": "<a.*?title=\"(.*?)\".*?class=\"result-game-item-title-link\".*?>",   //标题匹配规则。
     "surlrule": "<a.*?href=\"(.*?)\".*?class=\"result-game-item-title-link\".*?>", //URL匹配规则。

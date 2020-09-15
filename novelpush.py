@@ -207,7 +207,7 @@ class NovelPush:
 		# ask if transform epub to mobi
 		select = input(lang['ifTransformEpub'])
 		if select == 'Y' or select == 'y' or select == '':
-			os.system('zutils/kindlegen.exe %s' % self.epubpath)
+			os.system('.\zutils\kindlegen.exe %s' % self.epubpath)
 			self.mobi = True
 		else:
 			pass
@@ -221,6 +221,16 @@ class NovelPush:
 			email.attach('%s.mobi' % self.binfo['title'], self.epubpath)
 		else:
 			email.attach('%s.epub' % self.binfo['title'], self.epubpath)
+		email.send()
+		print(lang['emailSent'])
+	def sendMailRaw(self, file, name):
+		self.getConfig()
+		input(lang['sendEmail'] % self.smtp['ToEmail'])
+		email = maillib()
+		email.init(self.smtp)
+		email.subject(name)
+		email.main('书籍推送')
+		email.attach(name, file)
 		email.send()
 		print(lang['emailSent'])
 
