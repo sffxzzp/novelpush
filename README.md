@@ -13,6 +13,7 @@ NovelPush
 - [x] 支持断点续传
 - [x] 支持发生错误/关闭后，重开自动恢复
 - [x] 支持自动打包为 epub 文件
+- [x] 支持转换为 mobi 格式（依赖 kindlegen）
 - [x] 支持自动发送邮件到指定邮箱
 - [ ] 小说来源支持 css 选择器（需要 BeautifulSoup 模块支持）
 - [ ] Web 界面
